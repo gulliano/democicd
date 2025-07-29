@@ -1,12 +1,380 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon site de test</title>
+    <title>À Propos de Gustave Gulliano</title>
+    <!-- Importation de la police Roboto de Google Fonts pour un style moderne -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Importation de Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Variables CSS pour faciliter la gestion des couleurs */
+        :root {
+            --primary-color: #FFA500; /* Orange vif pour les accents */
+            --secondary-color: #BBBBBB; /* Gris clair pour le texte secondaire */
+            --background-color: #1A1A1A; /* Arrière-plan très sombre */
+            --card-background: #2C2C2C; /* Fond des cartes légèrement moins sombre */
+            --text-color: #F0F0F0; /* Blanc cassé pour le texte principal */
+            --heading-color: #FFFFFF; /* Blanc pur pour les titres */
+            --shadow-light: rgba(255, 255, 255, 0.05); /* Ombre très légère pour le mode sombre */
+            --shadow-strong: rgba(255, 255, 255, 0.1); /* Ombre plus prononcée pour le mode sombre */
+        }
+
+        /* Styles généraux du corps de la page */
+        body {
+            font-family: 'Roboto', sans-serif; /* Application de la police Roboto */
+            line-height: 1.6; /* Hauteur de ligne pour une meilleure lisibilité */
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color); /* Couleur d'arrière-plan sombre */
+            color: var(--text-color); /* Couleur du texte clair */
+            display: flex;
+            justify-content: center; /* Centrage horizontal */
+            align-items: center; /* Centrage vertical */
+            min-height: 100vh; /* Hauteur minimale de la fenêtre */
+            overflow-x: hidden; /* Empêche le défilement horizontal */
+        }
+
+        /* Conteneur principal de la page */
+        .container {
+            width: 90%;
+            max-width: 900px; /* Largeur maximale du conteneur */
+            margin: 40px auto; /* Marges automatiques pour centrer */
+            padding: 30px;
+            background-color: var(--card-background); /* Fond sombre pour l'effet carte */
+            border-radius: 12px; /* Coins arrondis */
+            box-shadow: 0 8px 20px var(--shadow-strong); /* Ombre douce */
+            text-align: center; /* Centrage du texte à l'intérieur */
+            opacity: 0; /* Initialement invisible pour l'animation */
+            transform: translateY(20px); /* Légèrement décalé vers le bas */
+            animation: fadeInScale 1s forwards ease-out; /* Animation d'apparition */
+        }
+
+        /* Animation d'apparition et de mise à l'échelle du conteneur */
+        @keyframes fadeInScale {
+            to {
+                opacity: 1; /* Devient visible */
+                transform: translateY(0); /* Remonte à sa position normale */
+            }
+        }
+
+        /* Styles de l'en-tête */
+        header h1 {
+            color: var(--primary-color); /* Couleur du titre principal (orange) */
+            font-size: 3em; /* Taille de la police */
+            margin-bottom: 10px;
+            animation: slideInLeft 1s ease-out; /* Animation de glissement depuis la gauche */
+        }
+
+        /* Animation de glissement depuis la gauche */
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%); /* Commence hors de l'écran à gauche */
+                opacity: 0; /* Invisible au début */
+            }
+            to {
+                transform: translateX(0); /* Vient à sa position normale */
+                opacity: 1; /* Devient visible */
+            }
+        }
+
+        header p {
+            font-size: 1.4em;
+            color: var(--secondary-color); /* Couleur du sous-titre (gris clair) */
+            margin-bottom: 30px;
+            /* Animation de glissement depuis la droite */
+            animation: slideInRight 1s ease-out 0.3s forwards;
+            opacity: 0; /* Invisible au début */
+        }
+
+        /* Animation de glissement depuis la droite */
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%); /* Commence hors de l'écran à droite */
+                opacity: 0; /* Invisible au début */
+            }
+            to {
+                transform: translateX(0); /* Vient à sa position normale */
+                opacity: 1; /* Devient visible */
+            }
+        }
+
+        /* Styles de l'image de profil */
+        .profile-picture {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%; /* Forme circulaire */
+            background-color: var(--primary-color); /* Couleur de fond (orange) */
+            margin: 0 auto 30px; /* Centrage et marge inférieure */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Cache ce qui dépasse du cercle */
+            box-shadow: 0 4px 15px var(--shadow-strong); /* Ombre */
+            /* Suppression de l'animation de rotation et d'apparition */
+            opacity: 1; /* Rendre l'image visible immédiatement */
+            transform: none; /* Supprimer toute transformation initiale */
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* L'image couvre tout le conteneur sans déformation */
+        }
+
+        /* Styles de la section "À Propos de Moi" */
+        .about-section {
+            text-align: left; /* Alignement du texte à gauche */
+            margin-bottom: 30px;
+        }
+
+        .about-section h2 {
+            color: var(--heading-color); /* Couleur du titre de section (blanc) */
+            font-size: 2em;
+            margin-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color); /* Soulignement animé (orange) */
+            display: inline-block; /* Pour que le soulignement ne prenne pas toute la largeur */
+            padding-bottom: 5px;
+            animation: underlineGrow 1s ease-out 0.9s forwards; /* Animation de croissance du soulignement */
+            opacity: 0; /* Invisible au début */
+        }
+
+        /* Animation de croissance du soulignement */
+        @keyframes underlineGrow {
+            from {
+                width: 0; /* Commence sans largeur */
+                opacity: 0; /* Invisible */
+            }
+            to {
+                width: 100%; /* Prend toute la largeur nécessaire */
+                opacity: 1; /* Visible */
+            }
+        }
+
+        .about-section p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            animation: fadeInText 1.5s ease-out 1.2s forwards; /* Animation de fondu du texte */
+            opacity: 0; /* Invisible au début */
+        }
+
+        /* Animation de fondu du texte */
+        @keyframes fadeInText {
+            from {
+                opacity: 0; /* Invisible */
+            }
+            to {
+                opacity: 1; /* Visible */
+            }
+        }
+
+        /* Styles de la section "Compétences Clés" */
+        .skills-section {
+            margin-bottom: 30px;
+        }
+
+        .skills-section h2 {
+            color: var(--heading-color); /* Couleur du titre de section (blanc) */
+            font-size: 2em;
+            margin-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color); /* Soulignement animé (orange) */
+            display: inline-block;
+            padding-bottom: 5px;
+            animation: underlineGrow 1s ease-out 1.5s forwards; /* Animation de croissance du soulignement */
+            opacity: 0; /* Invisible au début */
+        }
+
+        .skills-list {
+            list-style: none; /* Supprime les puces de liste */
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+            justify-content: center; /* Centrage des éléments */
+            gap: 15px; /* Espacement entre les éléments */
+        }
+
+        .skill-item {
+            background-color: var(--primary-color); /* Couleur de fond des compétences (orange) */
+            color: var(--background-color); /* Texte sombre sur fond orange */
+            padding: 10px 20px;
+            border-radius: 25px; /* Coins très arrondis (pilule) */
+            font-weight: bold;
+            box-shadow: 0 4px 10px var(--shadow-strong); /* Ombre */
+            transition: transform 0.3s ease, background-color 0.3s ease; /* Transition douce pour le survol */
+            animation: bounceIn 0.8s ease-out forwards; /* Animation de rebond à l'apparition */
+            opacity: 0; /* Invisible au début */
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px) scale(1.05); /* Se soulève et s'agrandit légèrement au survol */
+            background-color: #CC8400; /* Orange plus foncé au survol */
+        }
+
+        /* Décalage des animations pour chaque compétence pour un effet échelonné */
+        .skills-list .skill-item:nth-child(1) { animation-delay: 1.8s; }
+        .skills-list .skill-item:nth-child(2) { animation-delay: 2.0s; }
+        .skills-list .skill-item:nth-child(3) { animation-delay: 2.2s; }
+        .skills-list .skill-item:nth-child(4) { animation-delay: 2.4s; }
+        .skills-list .skill-item:nth-child(5) { animation-delay: 2.6s; }
+        .skills-list .skill-item:nth-child(6) { animation-delay: 2.8s; }
+        .skills-list .skill-item:nth-child(7) { animation-delay: 3.0s; }
+        .skills-list .skill-item:nth-child(8) { animation-delay: 3.2s; }
+
+        /* Animation de rebond */
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.3); /* Commence très petit */
+                opacity: 0; /* Invisible */
+            }
+            50% {
+                transform: scale(1.05); /* S'agrandit un peu plus que la taille finale */
+                opacity: 1; /* Visible */
+            }
+            70% {
+                transform: scale(0.9); /* Rétrécit légèrement */
+            }
+            100% {
+                transform: scale(1); /* Taille finale */
+                opacity: 1; /* Visible */
+            }
+        }
+
+        /* Styles du pied de page */
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: var(--secondary-color); /* Couleur du texte secondaire (gris clair) */
+            animation: fadeInText 1.5s ease-out 3.5s forwards; /* Animation de fondu avec délai */
+            opacity: 0; /* Invisible au début */
+        }
+
+        .social-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-link {
+            color: var(--primary-color); /* Couleur de l'icône (orange) */
+            font-size: 2.5em; /* Taille de l'icône */
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1); /* Effet de soulèvement au survol */
+            color: #CC8400; /* Orange plus foncé au survol */
+        }
+
+        /* Media queries pour la réactivité sur les petits écrans */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header p {
+                font-size: 1.2em;
+                white-space: normal; /* Permet le retour à la ligne */
+                overflow: visible; /* Rendre le contenu visible */
+                animation: slideInRight 1s ease-out 0.3s forwards; /* Rétablit l'animation de glissement */
+                border-right: none; /* Supprime le curseur */
+                opacity: 0; /* Invisible au début pour l'animation */
+            }
+
+            .profile-picture {
+                width: 150px;
+                height: 150px;
+            }
+
+            .about-section h2,
+            .skills-section h2 {
+                font-size: 1.8em;
+            }
+
+            .skill-item {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+
+            .social-link {
+                font-size: 2em; /* Réduit la taille de l'icône sur mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .profile-picture {
+                width: 120px;
+                height: 120px;
+            }
+
+            .about-section h2,
+            .skills-section h2 {
+                font-size: 1.5em;
+            }
+
+            .skills-list {
+                flex-direction: column; /* Les compétences s'empilent verticalement */
+                align-items: center; /* Centrage des compétences empilées */
+            }
+        }
+    </style>
 </head>
 <body>
-    Welcome to Madinina
-    
+    <div class="container">
+        <header>
+            <h1>Gustave Gulliano</h1>
+            <p>Formateur CDA à l'IMFPA</p>
+        </header>
+
+        <div class="profile-picture">
+            <!-- URL de la photo de profil de Gustave Gulliano -->
+            <img src="https://media.licdn.com/dms/image/v2/D4E35AQFrsqQpR7lrYA/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1699082645796?e=1754398800&v=beta&t=qoSg2O_LWuuUVttipU74ZKW4eFf12TdKAZhIYRTA5qU" alt="Photo de profil de Gustave Gulliano">
+        </div>
+
+        <section class="about-section">
+            <h2>À Propos de Moi</h2>
+            <p>Bonjour ! Je suis Gustave Gulliano, un professionnel passionné et dévoué avec <strong>25 ans d'expérience</strong> dans le vaste et dynamique domaine du <strong>digital</strong>.</p>
+            <p>Mon parcours m'a permis d'acquérir une expertise approfondie dans les technologies web, le développement d'applications, la gestion de projets digitaux et l'évolution constante des stratégies numériques. J'ai eu le privilège de voir le paysage digital se transformer et d'y contribuer activement.</p>
+            <p>Aujourd'hui, j'ai l'honneur d'être <strong>Formateur Concepteur Développeur d'Applications (CDA) à l'IMFPA</strong>. Mon rôle est de transmettre mes connaissances et mon expérience à la prochaine génération de talents du numérique, en les aidant à maîtriser les compétences essentielles pour innover et réussir dans ce secteur en perpétuel mouvement.</p>
+            <p>Ma pédagogie est axée sur la pratique, l'autonomie et l'adaptabilité, préparant ainsi mes apprenants aux défis réels du monde professionnel. J'ai à cœur de les accompagner dans leur développement, en partageant ma passion pour le digital et en stimulant leur créativité.</p>
+        </section>
+
+        <section class="skills-section">
+            <h2>Mes Compétences Clés</h2>
+            <ul class="skills-list">
+                <li class="skill-item">Développement Web (Front-end & Back-end)</li>
+                <li class="skill-item">Gestion de Projet Digital</li>
+                <li class="skill-item">Architecture Logicielle</li>
+                <li class="skill-item">Bases de Données</li>
+                <li class="skill-item">Méthodologies Agiles (Scrum/Kanban)</li>
+                <li class="skill-item">Cybersécurité</li>
+                <li class="skill-item">Formation & Pédagogie</li>
+                <li class="skill-item">Veille Technologique</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Gustave Gulliano. Tous droits réservés.</p>
+            <p>Connectons-nous !</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/gustave-gulliano-4030689/" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
